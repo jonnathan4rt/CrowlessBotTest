@@ -6,10 +6,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Tu Nombre o Nombre de tu Equipo",
   "license": "ISC",
-  "description": "",
+  "description": "Bot de Telegram utilizando Telegraf y Express",
   "dependencies": {
-    "telegraf": "^4.16.3"
+    "telegraf": "^4.16.3",
+    "express": "^4.18.2"  // Agrega la versión de Express que estás utilizando
   }
 }
