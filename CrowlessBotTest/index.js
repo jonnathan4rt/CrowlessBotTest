@@ -1,4 +1,4 @@
-const { Telegraf, Markup } = require('telegraf');
+const { Telegraf } = require('telegraf');
 const banCommand = require('./commands/admin-command/ban');
 const infoCommand = require('./commands/users-command/info');
 const helpCommand = require('./commands/bot-command/help');
@@ -11,7 +11,7 @@ const antiSpamCommand = require('./commands/general-command/anti-spam');
 const muteCommand = require('./commands/admin-command/mute');
 const unmuteCommand = require('./commands/admin-command/unmute');
 const helloCommand = require('./commands/general-command/hello');
-const express = require('express');
+const http = require('http');
 
 const token = '7301985658:AAEsz-N9Buoau-LnY-h9mV0M94OF7MwpBpw';
 const bot = new Telegraf(token);
@@ -36,15 +36,6 @@ surjanCommand(bot);
 muteCommand(bot);
 unmuteCommand(bot);
 
-// Configuración del servidor Express para Render
-const app = express();
-const port = process.env.PORT || 3000;
-
-// Ruta básica que responde con "Hola Mundo!"
-app.get('/', (req, res) => {
-  res.send('Hola Mundo!');
-});
-
 // Iniciar el bot de Telegram
 bot.launch().then(() => {
   console.log('Bot iniciado correctamente.');
@@ -52,7 +43,14 @@ bot.launch().then(() => {
   console.error('Error al iniciar el bot:', err);
 });
 
-// Iniciar el servidor Express en el puerto especificado
-app.listen(port, () => {
-  console.log(`Servidor Express escuchando en el puerto ${port}`);
+// Configuración del servidor ficticio para Render
+const port = process.env.PORT || 3000;
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Bot en funcionamiento\n');
+});
+
+server.listen(port, () => {
+  console.log(`Servidor ficticio escuchando en el puerto ${port}`);
 });
