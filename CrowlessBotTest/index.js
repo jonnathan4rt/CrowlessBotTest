@@ -1,4 +1,5 @@
 const { Telegraf } = require('telegraf');
+const express = require('express');
 
 // Importar comandos
 const banCommand = require('./commands/admin-command/ban');
@@ -37,4 +38,18 @@ bot.launch().then(() => {
   console.log('Bot iniciado correctamente.');
 }).catch((err) => {
   console.error('Error al iniciar el bot:', err);
+});
+
+// Configuración del servidor Express para Render
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Ruta básica que responde con "Bot en funcionamiento"
+app.get('/', (req, res) => {
+  res.send('Bot en funcionamiento');
+});
+
+// Iniciar el servidor Express en el puerto especificado
+app.listen(port, () => {
+  console.log(`Servidor Express escuchando en el puerto ${port}`);
 });
